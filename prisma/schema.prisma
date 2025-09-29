@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Store {
+  id        String   @id @default(cuid())      // unique id
+  name      String
+  userId    String                             // Clerk userId
+  createdAt DateTime @default(now())           // auto timestamp
+  updatedAt DateTime @updatedAt                // auto update timestamp
+}

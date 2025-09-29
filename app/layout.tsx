@@ -1,35 +1,34 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ClerkProvider } from '@clerk/nextjs';
-import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import type { Metadata } from "next"
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./globals.css"
+
+import { ModalProvider } from "@/providers/modal-provider"
+import { ToasterProvider } from "@/providers/toast-provider"
 
 export const metadata: Metadata = {
-  title: "Ecommerce Admin Dashboard",
-  description: "Admin dashboard for ecommerce store",
-};
+  title: "Ecommerce-mercy",
+  description: "Your modern e-commerce admin dashboard",
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en">
+      <body className="bg-gray-900">
+
+        <ToasterProvider />
+        
+        <ModalProvider/>
           {children}
-        </body>
-      </html>
+        
+      </body>
+    </html>
     </ClerkProvider>
-  );
+  )
 }

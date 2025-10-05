@@ -20,6 +20,7 @@ import { Form,
 import { Input } from "@/components/ui/input";
 import { Heading } from "@/components/heading";
 import toast from "react-hot-toast";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 interface SettingsFormProps {
     initialData: Store
@@ -69,6 +70,13 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
 
     return (
         <>
+        <AlertModal
+        
+        isOpen={open}
+        onClose={()  => setOpen(false)}
+        onConfirm={()  => {}}
+        loading={loading}
+        />
         <div className="flex-col">
             <div className="flex items-center justify-between">
                 <Heading

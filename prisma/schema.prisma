@@ -9,9 +9,21 @@ datasource db {
 }
 
 model Store {
-  id        String   @id @default(cuid())      // unique id
-  name      String
-  userId    String                             // Clerk userId
-  createdAt DateTime @default(now())           // auto timestamp
-  updatedAt DateTime @updatedAt                // auto update timestamp
+  id          String       @id @default(cuid())        // unique id
+  name        String
+  userId      String                                   // Clerk userId
+  billboards  Billboard[]  @relation("StoreToBillboard")
+  createdAt   DateTime     @default(now())             // auto timestamp
+  updatedAt   DateTime     @updatedAt                  // auto update timestamp
+}
+
+model Billboard {
+  id        String   @id @default(uuid())
+  storeId   String
+  store     Store    @relation("StoreToBillboard", fields: [storeId], references: [id])
+  lable String
+  imageUrl String
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt()
+@@index([storeId])
 }
